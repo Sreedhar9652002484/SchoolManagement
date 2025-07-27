@@ -1,27 +1,57 @@
-# CrmSchoolApp
+:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+🎓 School Management CRM
+🚀 A powerful, full-stack School Management CRM built to streamline administrative, academic, and operational workflows for educational institutions.
 
-## Development server
+📌 Project Overview
+This project is a School Management CRM application designed to simplify and digitize how schools manage student records, attendance, grades, fees, and more.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Built with Angular 17 and ASP.NET Core Web API, this modern application offers a responsive, secure, and role-based experience for school administrators, teachers, and staff.
 
-## Code scaffolding
+🔍 Project Highlights
+🎯 Purpose
+A comprehensive platform tailored for:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Managing student academic progress, attendance, fees
 
-## Build
+Handling teacher assignments and schedules
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Providing real-time dashboards for administrators
 
-## Running unit tests
+🌟 Key Features
+🧑‍🎓 Student Profiles: Cards with GPA, attendance, achievements, and personal details.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+📊 Admin Dashboard: Interactive tables to manage users, classes, and attendance.
 
-## Running end-to-end tests
+📱 Responsive UI: Optimized layouts across desktop, tablet, and mobile.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+🔐 Secure Authentication: JWT-based login for secure access.
 
-## Further help
+🖌️ Dark Theme UI: Styled using SCSS + Font Awesome icons.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+⚙️ Role-Based Access: Dynamic role pills (Admin, Teacher, Student) with CRUD support.
+
+🧰 Tech Stack
+Layer	Technology
+Frontend	Angular 17 (TypeScript, RxJS)
+Backend	ASP.NET Core Web API (.NET 8)
+Database	SQL Server
+Styling	SCSS, Font Awesome Icons
+Auth	JSON Web Tokens (JWT)
+Dev Tools	VS Code, Visual Studio, Postman
+
+🎨 UI Sneak Peek
+💡 Responsive & Elegant Design
+
+Student cards include attendance, performance charts, and badges.
+
+Admin tables include:
+
+Role badges (e.g., Admin, Teacher, Student)
+
+Smooth hover animations
+
+Inline CRUD buttons for user management
+
+Layout is 100% responsive using Flexbox + Media Queries.
+
