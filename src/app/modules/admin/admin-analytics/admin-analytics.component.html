@@ -1,0 +1,161 @@
+<div class="admin-cards row mb-4">
+  <!-- Summary Cards -->
+  <div class="col-lg-3 col-md-6 mb-3" *ngFor="let card of summaryCards">
+    <app-admin-card
+      [title]="card.title"
+      [value]="card.value"
+      [subtitle]="card.subtitle"
+      [changePositive]="card.changePositive"
+      [changeValue]="card.changeValue"
+      [iconSrc]="card.iconSrc"
+    ></app-admin-card>
+  </div>
+</div>
+
+<!-- Charts Section -->
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <!-- Student Activity Table -->
+  <div class="col-12 mb-3">
+    <div class="card shadow-sm p-3">
+      <h5 class="mb-3">Student Activity Log</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle table-striped"
+               [ngClass]="themeService.getCurrentTheme()">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Student Name</th>
+              <th>Class</th>
+              <th>Status</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of activityTableData; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ row.name }}</td>
+              <td>{{ row.class }}</td>
+              <td>
+                <span class="badge rounded-pill"
+                      [ngClass]="{
+                        'bg-success': row.status === 'Active',
+                        'bg-danger': row.status === 'Inactive',
+                        'bg-warning text-dark': row.status === 'Pending'
+                      }">
+                  {{ row.status }}
+                </span>
+              </td>
+              <td>{{ row.lastUpdated | date:'mediumDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+</div>
+<!-- Employee Details Table -->
+  <div class="col-12">
+    <div class="card shadow-sm p-3">
+      <h5 class="mb-3">Employee Directory</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle table-striped"
+               [ngClass]="themeService.getCurrentTheme()">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Department</th>
+              <th>Status</th>
+              <th>Joined On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of employeeTableData; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ emp.name }}</td>
+              <td>{{ emp.designation }}</td>
+              <td>{{ emp.department }}</td>
+              <td>
+                <span class="badge rounded-pill"
+                      [ngClass]="{
+                        'bg-success': emp.status === 'Active',
+                        'bg-secondary': emp.status === 'On Leave',
+                        'bg-danger': emp.status === 'Terminated'
+                      }">
+                  {{ emp.status }}
+                </span>
+              </td>
+              <td>{{ emp.joinedOn | date:'mediumDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Line Chart -->
+  <div class="col-md-6 mb-4">
+    <div class="card shadow p-2 mb-3">
+      <h5>Class-wise Student Distribution</h5>
+      <canvas baseChart
+        [data]="classPieChartData"
+        [type]="classPieType"
+        [options]="{ responsive: true }">
+      </canvas>
+    </div>
+  <div class="card shadow p-2 ">
+    <div class="d-flex justify-content-between align-items-center mb-1">
+      <h5 class="mb-0">Upcoming Events</h5>
+    </div>
+    <div class="events-scrollable" style="max-height: 320px; overflow-y: auto;">
+      <div class="event-card d-flex mb-2 p-1 rounded align-items-center hover-shadow" *ngFor="let event of upcomingEvents">
+        <div class="date-pill text-center me-3">
+          <div class="month">{{ formatDate(event.date).month }}</div>
+          <div class="day">{{ formatDate(event.date).day }}</div>
+        </div>
+        <div class="event-details flex-grow-1">
+          <h6 class="mb-1">{{ event.title }}</h6>
+          <p class="mb-1 text-muted small">{{ event.description }}</p>
+          <p class="mb-0 text-muted small">
+            <i class="fas fa-map-marker-alt me-1"></i>
+            {{ event.location }}
+          </p>
+        </div>
+        <div class="ms-2">
+          <i class="{{ event.icon }} text-primary fs-5"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-1">
+      <button class="btn btn-primary btn-sm rounded-pill px-4">View All</button>
+    </div>
+</div>
+</div>
+  </div>
+
+<!-- Bar Chart Section -->
+<div class="row mt-2">
+ <div class="col-md-6 mb-4">
+     <div class="card shadow p-3">
+      <h5>Monthly Admissions Trend</h5>
+      <canvas baseChart
+        [data]="admissionLineChartData"
+         [options]="{ responsive: true }">
+        [type]="'line'">
+      </canvas>
+    </div>
+ </div>
+  <div class="col-md-6 mb-4">
+    <div class="card shadow p-3">
+      <h5>Fee Collection Overview</h5>
+      <canvas baseChart
+        [data]="feeBarChartData"
+        [type]="feeBarChartType"
+        [options]="{ responsive: true }">
+      </canvas>
+    </div>
+  </div>
+</div>

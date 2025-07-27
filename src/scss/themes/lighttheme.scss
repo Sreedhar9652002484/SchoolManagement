@@ -1,0 +1,71 @@
+body.light-theme1 {
+  --primary-bg: #f0f4f8;              // Light, airy blue-gray background
+  --secondary-bg: #ffffff;            // White cards/panels
+  --primary-text: #2c3e50;            // Dark slate blue for text (easy on eyes)
+  --secondary-text: #7f8c8d;          // Medium gray for secondary text
+  --accent: #5dade2;                  // Soft sky blue for accents & highlights
+  --accent-light: #85c1e9;            // Lighter blue for hover/focus states
+  --success: #28a745;                 // Green for success messages
+  --warning: #f39c12;                 // Orange for warnings
+  --danger: #e74c3c;                  // Soft red for errors
+  --border-color: #d6dbdf;            // Light gray border
+  --input-bg: #ecf0f1;                // Very light gray input background
+  --button-text: #ffffff;             // White text on buttons
+  --icon-color: #2980b9;              // Slightly darker blue for icons
+
+  // Gradient background - subtle blue + soft white
+  --background-gradient: linear-gradient(135deg, #d6eaf8 0%, #ffffff 100%);
+}
+
+/* Theme 4: Purple Haze */
+body.light-theme {
+  --primary-bg: #f7f5fb;
+  --secondary-bg: #ffffff;
+  --primary-text: #4b3869;
+  --secondary-text: #7e6ba5;
+  --accent: #9b59b6;
+  --accent-light: #af7ac5;
+  --success: #27ae60;
+  --warning: #f39c12;
+  --danger: #e74c3c;
+  --border-color: #d8c8e2;
+  --input-bg: #f0e6f7;
+  --button-text: #ffffff;
+  --icon-color: #8e44ad;
+  --background-gradient: linear-gradient(135deg, #e6d9f7 0%, #ffffff 100%);
+}
+/* Theme 3: Forest Whisper */
+body.theme3-light {
+  --primary-bg: #f3faf7;
+  --secondary-bg: #ffffff;
+  --primary-text: #2e4a32;
+  --secondary-text: #637d68;
+  --accent: #27ae60;
+  --accent-light: #52be80;
+  --success: #2ecc71;
+  --warning: #f39c12;
+  --danger: #e74c3c;
+  --border-color: #d0e6d1;
+  --input-bg: #e8f5e9;
+  --button-text: #ffffff;
+  --icon-color: #229954;
+  --background-gradient: linear-gradient(135deg, #d4efdf 0%, #ffffff 100%);
+}
+
+/* Theme 2: Sunset Glow */
+body.theme2-light {
+  --primary-bg: #fff8f0;
+  --secondary-bg: #ffffff;
+  --primary-text: #4e342e;
+  --secondary-text: #7b5e57;
+  --accent: #e67e22;
+  --accent-light: #f39c12;
+  --success: #27ae60;
+  --warning: #d35400;
+  --danger: #c0392b;
+  --border-color: #f0d9d9;
+  --input-bg: #fcf4f1;
+  --button-text: #ffffff;
+  --icon-color: #d35400;
+  --background-gradient: linear-gradient(135deg, #fbe9e7 0%, #ffffff 100%);
+}

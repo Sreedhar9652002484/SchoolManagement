@@ -1,0 +1,5 @@
+<app-admin-header [isSidebarOpen]="isSidebarOpen" (toggleSidebar)="toggleSidebar()"></app-admin-header>
+<app-admin-sidebar [isSidebarOpen]="isSidebarOpen"></app-admin-sidebar>
+<main class="main-content" [class.sidebar-open]="isSidebarOpen">
+  <router-outlet></router-outlet>
+</main>

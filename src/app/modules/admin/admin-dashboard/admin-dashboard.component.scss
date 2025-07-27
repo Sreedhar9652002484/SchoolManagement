@@ -1,0 +1,16 @@
+.main-content {
+  margin-left: 70px; 
+  padding: 100px 30px;
+  min-height: 100vh;
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+
+  &.sidebar-open {
+    margin-left: 250px;  
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0 !important; 
+  }
+}

@@ -1,0 +1,150 @@
+.teacher-details-container {
+  background: var(--secondary-bg);
+  color: var(--primary-text);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  .page-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--accent);
+
+    i {
+      margin-right: 10px;
+      color: var(--icon-color);
+    }
+  }
+
+  .details-wrapper {
+    display: flex;
+    gap: 20px;
+
+    .left-panel {
+      flex: 1;
+      background: var(--input-bg);
+      padding: 20px;
+      border-radius: 8px;
+
+      .profile-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        .label {
+          font-weight: bold;
+          color: var(--secondary-text);
+          i {
+            color: var(--icon-color);
+          }
+        }
+
+        .value {
+          color: var(--primary-text);
+        }
+
+        &.address-row {
+          flex-direction: column;
+          text-align: left;
+
+          .value {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+
+    .right-panel {
+      flex: 2;
+      background: var(--input-bg);
+      padding: 20px;
+      border-radius: 8px;
+
+      .top-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+
+        .label {
+          font-weight: bold;
+          color: var(--secondary-text);
+          i {
+            color: var(--icon-color);
+          }
+        }
+
+        .value {
+          color: var(--primary-text);
+           .yellow-star {
+            color: #ffcc00; // Yellow color for stars
+          }
+        }
+      }
+
+      .stats-section {
+        h3 {
+          color: var(--accent);
+          margin-bottom: 15px;
+          i {
+            margin-right: 10px;
+            color: var(--icon-color);
+          }
+        }
+
+        .stat-item {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+
+          .label {
+            font-weight: bold;
+            color: var(--secondary-text);
+            i {
+              color: var(--icon-color);
+            }
+          }
+
+          .value {
+            color: var(--primary-text);
+            &.success { color: var(--success); }
+            &.warning { color: var(--warning); }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .details-wrapper {
+    flex-direction: column;
+
+    .left-panel, .right-panel {
+      width: 100%;
+    }
+  }
+}
+
+body {
+  background: var(--background-gradient);
+  margin: 0;
+  padding: 20px;
+}

@@ -1,0 +1,79 @@
+<div class="student-details-container">
+  <h2 class="page-title">
+         <i class="fas fa-user-graduate"></i>
+
+    <span> - Student Details</span>
+  </h2>
+
+  <div class="details-wrapper">
+    <div class="left-panel">
+      <img src="../../../../../../assets/Images/Students/student1.png" alt="Student photo" class="profile-photo" />
+
+      <div class="info-row">
+        <div>
+
+          <span class="label"><i class="fas fa-id-badge me-1"></i>Name</span>
+          <span class="value">{{student.FullName}}</span>
+        </div>
+        <div>
+          <span class="label"> <i class="fas fa-barcode me-1"></i>Student Id</span>
+          <span class="value">{{student.StudentUniqueId}}</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div>
+          <span class="label">  <i class="fas fa-envelope me-1"></i>Email ID</span>
+          <span class="value">{{student.Email}}</span>
+        </div>
+        <div>
+          <span class="label"> <i class="fas fa-phone me-1"></i>Phone</span>
+          <span class="value">{{student.MobileNumber}}</span>
+        </div>
+      </div>
+
+      <div class="info-row address-row">
+        <span class="label">   <i class="fas fa-map-marker-alt me-1"></i>Address</span>
+        <p class="value">{{student.Address}}</p>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="top-info">
+        <div>
+          <span class="label"> <i class="fas fa-book me-1"></i>Department</span>
+          <span class="value">{{student.DepartmentName}}</span>
+        </div>
+        <div>
+          <span class="label">  <i class="fas fa-chalkboard-teacher me-1"></i>Class</span>
+          <span class="value">{{student.ClassName}}</span>
+        </div>
+        <div>
+          <span class="label">  <i class="fas fa-layer-group me-1"></i>Section</span>
+          <span class="value">{{student.Section}}</span>
+        </div>
+        <div>
+          <span class="label">  <i class="fas fa-venus-mars me-1"></i>Gender</span>
+          <span class="value">{{student.Gender}}</span>
+        </div>
+      </div>
+
+          <div class="stats-section">
+        <h3><i class="fas fa-chart-line"></i> Academic Summary</h3>
+        <div class="stat-item">
+          <span class="label"><i class="fas fa-graduation-cap"></i> GPA</span>
+          <span class="value success">9.2 / 10</span>
+        </div>
+        <div class="stat-item">
+          <span class="label"><i class="fas fa-award"></i> Attendance</span>
+          <span class="value warning">94%</span>
+        </div>
+        <div class="stat-item">
+          <span class="label"><i class="fas fa-trophy"></i> Achievements</span>
+          <span class="value">Science Olympiad Winner</span>
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div>

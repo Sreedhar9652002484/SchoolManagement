@@ -1,0 +1,111 @@
+.admin-cards {
+  padding: 10px;
+
+  .dashboard-cards {
+    display: flex;
+    // flex-wrap: wrap;
+    // gap: 5px;
+    justify-content: space-between;
+    align-items: stretch;
+
+    app-admin-card {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    // Delay each card slightly (if needed)
+    app-admin-card:nth-child(1) { animation-delay: 0.1s; }
+    app-admin-card:nth-child(2) { animation-delay: 0.2s; }
+    app-admin-card:nth-child(3) { animation-delay: 0.3s; }
+    app-admin-card:nth-child(4) { animation-delay: 0.4s; }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-cards {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-cards {
+    flex-direction: column;
+    align-items: center;
+
+    app-admin-card {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+}
+.dark-theme .table thead {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-theme .table {
+  background-color: #1e1e2f;
+  color: #fff;
+  border-color: #555;
+}
+
+.dark-theme .badge {
+  border: 1px solid #ccc;
+}
+
+.date-pill {
+  width: 50px;
+  background-color: var(--bs-primary);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  overflow: hidden;
+
+  .month {
+    font-size: 0.75rem;
+    // background: darken($primary, 5%);
+    padding: 2px;
+  }
+
+  .day {
+    font-size: 1.25rem;
+    padding: 4px 0;
+  }
+}
+
+.event-card {
+  transition: all 0.3s ease;
+  background-color: var(--bs-light);
+  &.hover-shadow:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark-theme & {
+    background-color: #1e1e2f;
+    color: #f8f9fa;
+
+    .text-muted {
+      color: #aaa !important;
+    }
+  }
+}
+
+.events-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.events-scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}

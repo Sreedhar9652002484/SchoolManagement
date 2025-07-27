@@ -1,0 +1,92 @@
+<div class="auth-wrapper">
+  <div class="auth-content">
+    <div class="card">
+      <div class="row align-items-center text-center">
+        <div class="col-md-12">
+          <div class="card-body">
+            <img src="../../../../assets/Images/crm-logo.png" alt="logo" class="img-fluid" style="height: 50px;" />
+            <h4 class="mb-3 f-w-400">Sign In</h4>
+
+          
+
+            <!-- Role Selector -->
+            <!-- <div class="input-group mb-3">
+              <span class="input-group-text"><i class="feather icon-user-check"></i></span>
+              <select class="form-control" [(ngModel)]="selectedRole">
+                <option value="Customer">Customer</option>
+                <option value="Employee">Employee</option>
+              </select>
+            </div> -->
+
+            <!-- Email Input -->
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="feather icon-mail"></i></span>
+              <input type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Email address" required />
+            </div>
+
+            <!-- Password Input (Only for Employee) -->
+            <div class="input-group mb-3" *ngIf="selectedRole === 'Employee'">
+              <span class="input-group-text"><i class="feather icon-lock"></i></span>
+              <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required />
+            </div>
+
+            <!-- Captcha Image + Input (Only for Customer) -->
+            <div *ngIf="selectedRole === 'Customer'" class="mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <img [src]="captchaImage" alt="captcha" style="height: 50px;" />
+                <button class="btn btn-sm btn-outline-primary" (click)="refreshCaptcha()">Refresh</button>
+              </div>
+              <div class="input-group">
+                <span class="input-group-text"><i class="feather icon-shield"></i></span>
+                <input type="text" [(ngModel)]="captcha" name="captcha" class="form-control" placeholder="Enter Captcha" required />
+              </div>
+            </div>
+
+            <!-- Save Credentials Checkbox -->
+            <div class="form-group text-start mt-2">
+              <div class="checkbox checkbox-primary d-inline">
+                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" [(ngModel)]="saveCredentials" />
+                <label for="checkbox-fill-a1" class="cr">Save credentials</label>
+              </div>
+            </div>
+
+            <!-- Sign In Button -->
+            <div class="d-grid">
+              <button class="btn btn-block btn-primary mb-4" (click)="onSignIn()">Sign In</button>
+            </div>
+
+            <!-- Footer -->
+            <p class="mb-2 text-muted">
+              Forgot password? <a href="javascript:" class="f-w-400" (click)="resetPassword()">Reset</a>
+            </p>
+            <p class="mb-0 text-muted">
+              Don’t have an account? <a [routerLink]="['/auth/signup']" class="f-w-400">Signup</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OTP Modal -->
+<div class="modal fade" id="otpModal" *ngIf="showOTPModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">Enter OTP</h5>
+        <button type="button" class="btn-close" (click)="showOTPModal = false"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Enter the 6-digit OTP sent to your email.</p>
+        <input type="text" [(ngModel)]="otp" name="otp" maxlength="6" class="form-control text-center" placeholder="______"
+               style="font-size: 24px; letter-spacing: 10px;" />
+        
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-success" (click)="verifyOtp()">Verify OTP</button>
+        <button class="btn btn-secondary" (click)="resendOtp()">Resend OTP</button>
+      </div>
+    </div>
+  </div>
+</div>

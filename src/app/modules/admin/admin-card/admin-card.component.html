@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card__info">
+    <p class="card__title">{{ title }}</p>
+    <div class="d-flex">
+         <h2 class="card__value">{{ value }}</h2>
+         <div class="card__icon">
+    <img [src]="iconSrc" alt="icon" />
+  </div>
+    </div>
+    <p class="card__change" [class.positive]="changePositive" [class.negative]="!changePositive">
+      {{ changeValue }}
+    </p>
+  </div>
+ 
+</div>
+
+

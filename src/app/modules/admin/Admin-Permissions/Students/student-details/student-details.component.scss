@@ -1,0 +1,385 @@
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.student-details-container {
+  animation: fadeIn 0.6s ease-in-out;
+  margin: 0 1rem; /* Added for smaller screens */
+}
+
+.page-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .icon {
+    color: var(--icon-color);
+    font-size: 1.4rem;
+  }
+}
+
+.details-wrapper {
+  display: flex;
+  gap: 20px;
+  background: var(--secondary-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.left-panel {
+  width: 320px;
+  background: var(--primary-bg);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+
+  .profile-photo {
+    width: 70%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+    gap: 10px;
+
+    div {
+      flex: 1;
+    }
+
+    .label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .value {
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--secondary-text);
+      word-break: break-word;
+    }
+  }
+
+  .address-row {
+    flex-direction: column;
+    text-align: left;
+    padding-top: 10px;
+
+    .label {
+      margin-bottom: 5px;
+    }
+
+    .value {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      color: var(--secondary-text);
+    }
+  }
+}
+
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .top-info {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+
+    div {
+      flex: 1;
+      padding: 0 15px;
+      border-right: 1px solid var(--border-color);
+
+      &:last-child {
+        border-right: none;
+      }
+
+      .label {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .value {
+        font-weight: 400;
+        font-size: 0.9rem;
+        color: var(--secondary-text);
+        word-break: break-word;
+      }
+    }
+  }
+
+  .stats-section {
+    background: var(--primary-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .stats-section h3 {
+    font-size: 1.2rem;
+    color: var(--accent-light);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .stat-item .label i {
+    margin-right: 6px;
+    color: var(--icon-color);
+  }
+
+  .stat-item .value.success {
+    color: var(--success);
+  }
+
+  .stat-item .value.warning {
+    color: var(--warning);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .student-details-container {
+    margin: 0 0.5rem;
+  }
+
+  .details-wrapper {
+    flex-direction: column; /* Stack panels vertically on tablets */
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .left-panel {
+    width: 100%; /* Full width on smaller screens */
+    padding: 15px;
+  }
+
+  .profile-photo {
+    width: 50%; /* Smaller photo size */
+    margin: 0 auto 15px;
+  }
+
+  .info-row {
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  .info-row .label,
+  .info-row .value,
+  .address-row .value {
+    font-size: 0.85rem; /* Slightly smaller fonts */
+  }
+
+  .right-panel .top-info {
+    flex-wrap: wrap; /* Allow wrapping for top-info items */
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+
+  .right-panel .top-info div {
+    padding: 0 10px;
+    flex: 1 1 45%; /* Two items per row */
+    border-right: none; /* Remove borders for cleaner look */
+    margin-bottom: 10px;
+  }
+
+  .stats-section {
+    padding: 10px;
+  }
+
+  .stats-section h3 {
+    font-size: 1.1rem;
+  }
+
+  .page-title {
+    font-size: 1.3rem;
+
+    .icon {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .student-details-container {
+    margin: 0 0.25rem;
+  }
+
+  .details-wrapper {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .left-panel {
+    padding: 10px;
+  }
+
+  .profile-photo {
+    width: 60%;
+    margin-bottom: 10px;
+  }
+
+  .info-row {
+    flex-direction: column; /* Stack info-row items vertically */
+    padding: 6px 0;
+    gap: 5px;
+  }
+
+  .info-row div {
+    text-align: left; /* Align text left for consistency */
+  }
+
+  .info-row .label,
+  .info-row .value,
+  .address-row .value {
+    font-size: 0.8rem;
+  }
+
+  .right-panel .top-info {
+    flex-direction: column; /* Stack top-info items */
+    padding-bottom: 8px;
+  }
+
+  .right-panel .top-info div {
+    flex: 1 1 100%; /* Full width for each item */
+    padding: 0 5px;
+    margin-bottom: 8px;
+  }
+
+  .right-panel .top-info .label,
+  .right-panel .top-info .value {
+    font-size: 0.8rem;
+  }
+
+  .stats-section {
+    padding: 8px;
+  }
+
+  .stats-section h3 {
+    font-size: 1rem;
+    gap: 6px;
+  }
+
+  .stat-item {
+    margin-bottom: 8px;
+  }
+
+  .page-title {
+    font-size: 1.2rem;
+
+    .icon {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .student-details-container {
+    margin: 0;
+  }
+
+  .details-wrapper {
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .left-panel {
+    padding: 8px;
+  }
+
+  .profile-photo {
+    width: 80%; /* Larger photo for very small screens */
+    border-width: 1px;
+  }
+
+  .info-row {
+    padding: 5px 0;
+  }
+
+  .info-row .label,
+  .info-row .value,
+  .address-row .value {
+    font-size: 0.5rem;
+  
+  }
+
+  .address-row {
+    padding-top: 5px;
+  }
+
+  .right-panel .top-info {
+    margin-bottom: 10px;
+  }
+
+  .right-panel .top-info div {
+    padding: 0 3px;
+    margin-bottom: 5px;
+  }
+
+  .right-panel .top-info .label,
+  .right-panel .top-info .value {
+    font-size: 0.5rem;
+  }
+
+  .stats-section {
+    padding: 5px;
+  }
+
+  .stats-section h3 {
+    font-size: 0.9rem;
+    gap: 5px;
+  }
+
+  .stat-item {
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-item .label i {
+    margin-right: 4px;
+  }
+
+  .page-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+
+    .icon {
+      font-size: 1rem;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+<div class="teacher-details-container" [@fadeInOut]="state">
+  <h2 class="page-title">
+    <i class="fas fa-chalkboard-teacher"></i>
+    <span> - Teacher Details</span>
+  </h2>
+
+  <div class="details-wrapper">
+    <div class="left-panel">
+      <img src="../../../../../../assets/Images/Admin/TEACHER.jpg" alt="Teacher photo" class="profile-photo" />
+
+      <div class="info-row">
+        <div class="d-flex flex-column">
+          <span class="label"><i class="fas fa-id-badge me-1"></i>Name</span>
+          <span class="value">{{teacher.FullName}}</span>
+        </div>
+        <div class="d-flex flex-column">
+          <span class="label"><i class="fas fa-barcode me-1"></i>Teacher ID</span>
+          <span class="value">{{teacher.TeacherUniqueId}}</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="d-flex flex-column">
+          <span class="label"><i class="fas fa-envelope me-1"></i>Email ID</span>
+          <span class="value">{{teacher.Email}}</span>
+        </div>
+        <div class="d-flex flex-column">
+          <span class="label"><i class="fas fa-phone me-1"></i>Phone</span>
+          <span class="value">{{teacher.MobileNumber}}</span>
+        </div>
+      </div>
+
+      <div class="info-row address-row">
+        <span class="label"><i class="fas fa-map-marker-alt me-1"></i>Address</span>
+        <p class="value">{{teacher.Address}}</p>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="top-info">
+        <div class="d-flex justify-content-between">
+          <span class="label"><i class="fas fa-university me-1"></i>Department</span>
+          <span class="value">{{teacher.DepartmentName}}</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="label"><i class="fas fa-book me-1"></i>Courses</span>
+          <span class="value">{{teacher.courses || 'Higher Math, Algebra'}}</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="label"><i class="fas fa-users me-1"></i>Classes Assigned</span>
+          <span class="value">{{teacher.classesAssigned || 'class 7,8,9'}}</span>
+        </div>
+       <div class="d-flex justify-content-between">
+          <span class="label"><i class="fas fa-star me-1"></i>Rating</span>
+          <span class="value">
+            <ng-container *ngFor="let star of getStars()">
+              <i class="fas fa-star" [ngClass]="{'yellow-star': star <= 3.5}"></i>
+            </ng-container>
+            <!-- ({{teacher.rating || 3.5}}/5) -->
+          </span>
+        </div>
+      </div>
+
+     <div class="stats-section">
+        <h3><i class="fas fa-chart-line"></i> Performance Summary</h3>
+        <div class="stat-item">
+          <span class="label"><i class="fas fa-tachometer-alt me-1"></i>Performance</span>
+          <span class="value success">92%</span>
+        </div>
+        <div class="stat-item">
+          <span class="label"><i class="fas fa-comments me-1"></i>Reviews</span>
+          <span class="value">Highly engaging and knowledgeable</span>
+        </div>
+        <div class="stat-item">
+          <span class="label"><i class="fas fa-heart me-1"></i>Hobbies</span>
+          <span class="value">Playing guitar, hiking, reading novels</span>
+        </div>
+        <div class="stat-item">
+          <span class="label"><i class="fas fa-clock me-1"></i>Work Hours</span>
+          <span class="value">35 hours/week</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

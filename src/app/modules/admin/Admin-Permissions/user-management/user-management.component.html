@@ -1,0 +1,173 @@
+
+  
+  <app-loader *ngIf="ShowLoader"></app-loader>
+
+  
+  <div class="flex justify-between items-center flex-wrap mb-4">
+    <h2 class="text-xl font-semibold text-[var(--primary-text)]">
+      <i class="fas fa-users mr-2 text-[var(--accent)]"></i> User Management
+    </h2>
+  </div>
+
+
+  <div class="d-flex justify-content-between mb-4">
+     <button class="submit-btn me-2" (click)="openAddEditModal()">
+      <i class="fas fa-user-plus me-2"></i> Add
+    </button>
+    <div class="relative w-full sm:w-auto d-flex justify-content-center align-items-center gap-2">
+      <input
+        type="text"
+        placeholder="Search user..."
+        class="input-field pl-10"
+        [(ngModel)]="searchTerm"
+      />
+      <i class="fas fa-search absolute top-2.5 left-3 text-sm text-gray-400"></i>
+    </div>
+  </div>
+
+  <!-- User Table -->
+  <div class="table-container">
+    <table class="user-table min-w-[600px]">
+      <thead>
+        <tr>
+         <th><i class="fas fa-user me-1"></i>UserId</th>
+          <th><i class="fas fa-user me-1"></i>Name</th>
+          <th><i class="fas fa-envelope me-1"></i>Email</th>
+          <th><i class="fas fa-user-shield me-1"></i>Role</th>
+          <th><i class="fas fa-toggle-on me-1"></i>Status</th>
+          <th><i class="fas fa-cogs me-1"></i>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of pagedUsers" class="table-row"
+           [ngClass]="{'not-active': !user.IsActive}">
+         <td class="status-label" *ngIf="!user.IsActive">Not Active</td>
+        <td *ngIf="user.IsActive">{{ user.userId }}</td>
+           
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span class="pill" [ngClass]="user.role.toLowerCase()">
+              <i class="fas" [ngClass]="user.role === 'Admin' ? 'fa-user-shield' : 'fa-user'"></i>
+              {{ user.role }}
+            </span>
+          </td>
+          <td>
+            <div
+              class="toggle-switch"
+              [ngClass]="{ active: user.IsActive }"
+              (click)="toggleStatus(user.userId, user.IsActive?'Deactive':'Active')"
+            >
+              <div class="toggle-knob"></div> 
+              <i
+                class="fas status-icon"
+                [ngClass]="user.IsActive ? 'fa-check-circle active' : 'fa-times-circle inactive'"
+              ></i>
+            </div>
+          </td>
+          <td class="whitespace-nowrap">
+            <button class="action-btn edit" (click)="openAddEditModal(user)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="action-btn delete " (click)="deleteUser(user.userId)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+ <!-- Pagination Bottom -->
+<div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+  <div class="text-sm text-[var(--primary-text)]">
+    Page {{ currentPage }} of {{ totalPages }}
+  </div>
+  <div class="d-flex gap-2">
+    <button 
+      class="submit-btn px-3 py-1"
+      (click)="currentPage = currentPage > 1 ? currentPage - 1 : 1"
+      [disabled]="currentPage === 1">
+      <i class="fas fa-angle-left"></i>
+    </button>
+    <button 
+      class="submit-btn px-3 py-1"
+      (click)="currentPage = currentPage < totalPages ? currentPage + 1 : totalPages"
+      [disabled]="currentPage === totalPages">
+      <i class="fas fa-angle-right"></i>
+    </button>
+  </div>
+  <div class="text-sm text-[var(--primary-text)]">
+    Showing {{ showingFrom }} - {{ showingTo }} of {{ filteredUsers.length }}
+  </div>
+</div>
+
+
+  <!-- Modal for Add/Edit -->
+  <div
+    class="modal fade"
+    #userModal
+    id="userModal"
+    tabindex="-1"
+    aria-labelledby="userModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">
+            <i class="fas fa-user-edit mr-2"></i>{{ editingUser ? 'Edit User' : 'Add User' }}
+          </h5>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <input
+                type="text"
+                [(ngModel)]="newUser.name"
+                name="name"
+                placeholder="Name"
+                class="input-field"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="email"
+                [(ngModel)]="newUser.email"
+                name="email"
+                placeholder="Email"
+                class="input-field"
+                required
+              />
+            </div>
+             <div class="mb-3">
+              <input
+                type="text"
+                [(ngModel)]="newUser.password"
+                name="password"
+                placeholder="Password"
+                class="input-field"
+                required
+              />
+            </div>
+           <div class="mb-3">
+  <select [(ngModel)]="newUser.roleId" name="role" class="input-field">
+    <option value="" disabled selected>--- Select Role --</option>
+    <option *ngFor="let role of roles" [value]="role.RoleId">{{role.RoleName}}</option>
+  </select>
+</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="submit-btn" (click)="editingUser ? addUser('UPDATE') : addUser('CREATE')">
+            <i class="fas fa-save mr-1"></i> {{ editingUser ? 'Update' : 'Add' }}
+          </button>
+          <button type="button" class="cancel-btn" data-bs-dismiss="modal" (click)="closeModal()">
+            <i class="fas fa-times mr-1"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

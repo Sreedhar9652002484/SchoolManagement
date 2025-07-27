@@ -1,0 +1,50 @@
+<aside class="sidebar" [ngClass]="{'active': isSidebarOpen, 'collapsed': !isSidebarOpen}">
+  <div class="sidebar__header">
+    <img src="../../../../assets/Images/Admin/crm-logo.png" alt="Logo" class="sidebar__logo" />
+    <span class="sidebar__title">SchoolSync</span>
+  </div>
+  <ul class="sidebar__nav">
+    <li>
+      <a routerLink="/admin/analytics" routerLinkActive="active">
+        <i class="fas fa-home colorful-icon"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+     <li>
+      <a routerLink="/admin/manageusers" routerLinkActive="active">
+        <i class="fas fa-users colorful-icon"></i>
+        <span>User Management</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/students" routerLinkActive="active">
+        <i class="fas fa-users colorful-icon"></i>
+        <span>Students</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/teachers" routerLinkActive="active">
+        <i class="fas fa-chalkboard-teacher colorful-icon"></i>
+        <span>Teachers</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/events" routerLinkActive="active">
+        <i class="fas fa-calendar-alt colorful-icon"></i>
+        <span>Events</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/settings" routerLinkActive="active">
+        <i class="fas fa-cog colorful-icon"></i>
+        <span>Settings</span>
+      </a>
+    </li>
+    <li>
+      <a (click)="logout()">
+        <i class="fas fa-sign-out-alt colorful-icon"></i>
+        <span>Logout</span>
+      </a>
+    </li>
+  </ul>
+</aside>

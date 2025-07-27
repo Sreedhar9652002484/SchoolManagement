@@ -1,0 +1,31 @@
+<div class="teacher-card" [ngClass]="{'not-active': !teacher.IsActive}">
+  <div class="status-label" *ngIf="!teacher.IsActive">Not Active</div>
+  <div class="teacher-card-header">
+    <img src="../../../../../../assets/Images/Admin/TEACHER.jpg" alt="Teacher Photo" class="teacher-photo" />
+    <div class="teacher-info">
+      <h3 class="teacher-name">{{ teacher.FullName }}</h3>
+      <span class="teacher-designation">{{ teacher.Designation || 'HOD' }}</span>
+    </div>
+  </div>
+  <div class="teacher-details">
+    <p><i class="fas fa-map-marker-alt"></i> {{ teacher.Address || 'Po Box 453, Seaboard, NC, 27876' }}</p>
+    <p><i class="fas fa-phone"></i> {{ teacher.MobileNumber || '(021) 123-4215' }}</p>
+    <p><i class="fas fa-building"></i> {{teacher.DepartmentName || 'Science'}}</p>
+    <p><i class="fas fa-building"></i> {{teacher.DepartmentDescription || 'Science'}}</p>
+  </div>
+  <div class="teacher-actions">
+    <button class="action-btn view" (click)="onView()">
+      <i class="fas fa-eye"></i> View
+    </button>
+    <button class="action-btn edit" (click)="onEdit()">
+      <i class="fas fa-edit"></i> Edit
+    </button>
+    <div class="toggle-switch" [ngClass]="{ active: teacher.IsActive }" (click)="onToggle(teacher.TeacherId, teacher.IsActive ? 'Deactive' : 'Active')">
+      <div class="toggle-knob"></div>
+      <i class="fas status-icon" [ngClass]="teacher.IsActive ? 'fa-check-circle active' : 'fa-times-circle inactive'"></i>
+    </div>
+    <button class="action-btn delete" (click)="onDelete()">
+      <i class="fas fa-trash"></i> Delete
+    </button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<header class="header" [class.sidebar-open]="isSidebarOpen">
+     <button class="sidebar-toggle me-2" (click)="onToggleSidebar()" aria-label="Toggle sidebar">
+      <i class="fas fa-bars"></i>
+    </button>
+  <div class="header__logo">
+    <i class="fas fa-graduation-cap"></i>
+    <span>Admin</span>
+  </div>
+
+  <div class="header__right">
+      <nav class="header__nav">
+    <ul>
+      <!-- <li><a routerLink="/dashboard" routerLinkActive="active"><i class="fas fa-home"></i> Dashboard</a></li> -->
+      <!-- <li><a routerLink="/students" routerLinkActive="active"><i class="fas fa-users"></i> Students</a></li> -->
+      <!-- <li><a routerLink="/teachers" routerLinkActive="active"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li> -->
+      <li><a routerLink="/events" routerLinkActive="active"><i class="fas fa-calendar-alt"></i></a></li>
+      <li><a routerLink="/reports" routerLinkActive="active"><i class="fas fa-chart-bar"></i></a></li>
+      <li><a routerLink="/notifications" routerLinkActive="active"><i class="fas fa-bell"></i></a></li>
+    </ul>
+  </nav>
+    <div class="theme-toggle">
+      <input type="checkbox" id="theme-switch" class="theme-switch" (change)="toggleTheme()" />
+      <label for="theme-switch" class="theme-switch-label">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="user-profile">
+      <img src="../../../../assets/Images/Admin/admin.png" alt="User" class="user-profile__img" />
+      <span class="user-profile__name">{{ userName }}</span>
+      <i class="fas fa-caret-down"></i>
+    </div>
+
+   
+  </div>
+</header>

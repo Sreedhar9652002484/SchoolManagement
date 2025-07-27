@@ -1,0 +1,216 @@
+<app-loader *ngIf="ShowLoader"></app-loader>
+
+<div class="flex justify-between items-center flex-wrap mb-4">
+  <h2 class="text-xl font-semibold text-[var(--primary-text)]">
+    <i class="fas fa-chalkboard-teacher mr-2 text-[var(--accent)]"></i> Teacher Management
+  </h2>
+</div>
+
+<!-- Search + Add Button -->
+<div class="d-flex justify-content-between mb-4 flex-wrap gap-2">
+  <button class="submit-btn" (click)="openAddEditModal()">
+    <i class="fas fa-user-plus mr-2"></i> Add Teacher
+  </button>
+</div>
+
+<!-- Teacher Cards -->
+<div class="teacher-cards-container">
+  <div *ngIf="pagedTeachers.length === 0" class="text-center py-4 text-[var(--primary-text)]">
+    No teachers available
+  </div>
+  <div class="teacher-card-wrapper" *ngFor="let teacher of pagedTeachers">
+   <app-teacher-card [teacher]="teacher" (view)="viewTeacherDetails($event)" (edit)="openAddEditModal($event)" 
+  (toggle)="toggleStatus($event.teacherId, $event.action)" 
+  (delete)="deleteTeacher($event)"></app-teacher-card>
+  </div>
+</div>
+
+<!-- Modal for Add/Edit Teacher -->
+<div
+  class="modal fade"
+  #teacherModal
+  id="teacherModal"
+  tabindex="-1"
+  aria-labelledby="teacherModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="teacherModalLabel">
+          <i class="fas fa-user-edit mr-2 text-[var(--accent)]"></i>{{ editingTeacher ? 'Edit Teacher' : 'Add Teacher' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form #teacherForm="ngForm" (ngSubmit)="editingTeacher ? updateTeacher() : addTeacher()">
+          <div class="row mb-3">
+            <div class="col-12 col-md-4 mb-3" *ngIf="!editingTeacher">
+              <label for="userId" class="form-label">
+                <i class="fas fa-user-graduate mr-2"></i> Associated User <span class="text-danger">*</span>
+              </label>
+              <select
+                id="userId"
+                name="userId"
+                [(ngModel)]="newTeacher.userId"
+                class="form-control input-field"
+                required
+                (change)="onUserChange()"
+                #userId="ngModel"
+                [ngClass]="{ 'is-invalid': userId.invalid && (userId.dirty || userId.touched) }"
+              >
+                <option value="" disabled selected>--- Select User ---</option>
+                <option *ngFor="let user of availableTeachers" [value]="user.USERID">{{ user.FULLNAME }} ({{ user.EMAIL }})</option>
+              </select>
+              <div *ngIf="userId.invalid && (userId.dirty || userId.touched)" class="invalid-feedback">
+                Associated User is required.
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+              <label for="fullName" class="form-label">
+                <i class="fas fa-user mr-2"></i> Full Name <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                [(ngModel)]="newTeacher.fullName"
+                placeholder="Select associated user"
+                class="form-control input-field"
+                required
+                disabled
+                #fullName="ngModel"
+                [ngClass]="{ 'is-invalid': fullName.invalid && (fullName.dirty || fullName.touched) }"
+              />
+              <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)" class="invalid-feedback">
+                Full Name is required.
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+              <label for="email" class="form-label">
+                <i class="fas fa-envelope mr-2"></i> Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="newTeacher.email"
+                placeholder="Select associated user"
+                class="form-control input-field"
+                disabled
+                #email="ngModel"
+                [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched) }"
+              />
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                Please enter a valid email address.
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-12 col-md-4 mb-3">
+              <label for="mobileNumber" class="form-label">
+                <i class="fas fa-phone mr-2"></i> Mobile Number
+              </label>
+              <input
+                type="text"
+                id="mobileNumber"
+                name="mobileNumber"
+                [(ngModel)]="newTeacher.mobileNumber"
+                placeholder="Enter mobile number"
+                class="form-control input-field"
+                pattern="^\+?[\d\s-]{10,15}$"
+                #mobileNumber="ngModel"
+                [ngClass]="{ 'is-invalid': mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched) }"
+              />
+              <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)" class="invalid-feedback">
+                Please enter a valid mobile number (10-15 digits).
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+              <label for="designation" class="form-label">
+                <i class="fas fa-briefcase mr-2"></i> Designation
+              </label>
+              <input
+                type="text"
+                id="designation"
+                name="designation"
+                [(ngModel)]="newTeacher.designation"
+                placeholder="Enter designation"
+                class="form-control input-field"
+                #designation="ngModel"
+                [ngClass]="{ 'is-invalid': designation.invalid && (designation.dirty || designation.touched) }"
+              />
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+              <label for="departmentId" class="form-label">
+                <i class="fas fa-building mr-2"></i> Department
+              </label>
+              <select
+                id="departmentId"
+                name="departmentId"
+                [(ngModel)]="newTeacher.departmentId"
+                class="form-control input-field"
+                #departmentId="ngModel"
+                [ngClass]="{ 'is-invalid': departmentId.invalid && (departmentId.dirty || departmentId.touched) }"
+              >
+                <option value="" disabled selected>--- Select Department ---</option>
+                <option *ngFor="let dept of departments" [value]="dept.DEPARTMENTID">{{ dept.DEPARTMENTNAME }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-12 col-md-4 mb-3">
+              <label for="profilePictureUrl" class="form-label">
+                <i class="fas fa-image mr-2"></i> Profile Picture URL
+              </label>
+              <input
+                type="text"
+                id="profilePictureUrl"
+                name="profilePictureUrl"
+                [(ngModel)]="newTeacher.profilePictureUrl"
+                placeholder="Enter profile picture URL"
+                class="form-control input-field"
+                pattern="https?://.+"
+                #profilePictureUrl="ngModel"
+                [ngClass]="{ 'is-invalid': profilePictureUrl.invalid && (profilePictureUrl.dirty || profilePictureUrl.touched) }"
+              />
+              <div *ngIf="profilePictureUrl.invalid && (profilePictureUrl.dirty || profilePictureUrl.touched)" class="invalid-feedback">
+                Please enter a valid URL.
+              </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+              <label for="address" class="form-label">
+                <i class="fas fa-map-marker-alt mr-2"></i> Address
+              </label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                [(ngModel)]="newTeacher.address"
+                placeholder="Enter address"
+                class="form-control input-field"
+                #address="ngModel"
+                [ngClass]="{ 'is-invalid': address.invalid && (address.dirty || address.touched) }"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="submit-btn"
+          [disabled]="teacherForm.invalid"
+          (click)="editingTeacher ? updateTeacher() : addTeacher()"
+        >
+          <i class="fas fa-save mr-1"></i> {{ editingTeacher ? 'Update' : 'Add' }}
+        </button>
+        <button type="button" class="cancel-btn" data-bs-dismiss="modal" (click)="closeModal()">
+          <i class="fas fa-times mr-1"></i> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

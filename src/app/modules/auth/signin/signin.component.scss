@@ -1,0 +1,125 @@
+
+
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-bg), var(--input-bg));
+
+  .auth-content {
+    width: 100%;
+    max-width: 400px;
+    padding: 1.5rem;
+  }
+
+  .card {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+
+    .card-body {
+      padding: 0;
+
+      h4 {
+        color: var(--primary-text);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+      }
+
+      .input-group {
+        margin-bottom: 1rem;
+
+        .input-group-text {
+          background-color: var(--input-bg);
+          border: 1px solid var(--border-color);
+          color: var(--secondary-text);
+          font-size: 0.85rem;
+        }
+
+        .form-control {
+          background-color: var(--input-bg);
+          border: 1px solid var(--border-color);
+          font-size: 0.85rem;
+          height: 2.25rem;
+          padding: 0.4rem 0.75rem;
+          color: var(--primary-text);
+
+          &:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
+          }
+        }
+      }
+
+      select.form-control {
+        padding-right: 2rem;
+      }
+
+      .checkbox {
+        font-size: 0.85rem;
+        color: var(--secondary-text);
+      }
+
+      .btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 0.4rem;
+        transition: background-color 0.3s ease;
+        color: var(--button-text);
+
+        &.btn-primary {
+          background-color: var(--accent);
+
+          &:hover {
+            background-color: var(--accent-light);
+          }
+        }
+
+        &.btn-outline-primary {
+          border-color: var(--accent);
+          color: var(--accent);
+
+          &:hover {
+            background-color: var(--accent-light);
+            color: var(--button-text);
+          }
+        }
+
+        &.btn-secondary {
+          background-color: #cbd5e0;
+          color: var(--primary-text);
+
+          &:hover {
+            background-color: #a0aec0;
+          }
+        }
+
+        &.btn-success {
+          background-color: var(--success);
+          color: #fff;
+        }
+      }
+
+      .text-muted {
+        font-size: 0.75rem;
+        color: var(--secondary-text);
+      }
+
+      .modal-content {
+        border-radius: 0.75rem;
+      }
+
+      input[type="text"][name="otp"] {
+        font-size: 1.5rem;
+        letter-spacing: 0.4rem;
+        text-align: center;
+        height: 2.5rem;
+      }
+    }
+  }
+}
