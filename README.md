@@ -1,4 +1,3 @@
-:
 
 🎓 School Management CRM
 🚀 A powerful, full-stack School Management CRM built to streamline administrative, academic, and operational workflows for educational institutions.
