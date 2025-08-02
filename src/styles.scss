@@ -521,3 +521,61 @@ body {
     padding: 0.3rem;
   }
 }
+
+.teacher-card {
+  background: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.5s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; // Added to allow absolute positioning of the status label
+
+  &.not-active {
+    opacity: 0.6; 
+    border-color: var(--danger); 
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+.status-label {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: var(--danger);
+    color: var(--button-text);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    z-index: 1;
+  }
+ .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      .icon-btn {
+        background: var(--input-bg);
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--icon-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        &:hover {
+          background: var(--accent-light);
+        }
+        &.danger {
+          color: var(--danger);
+        }
+      }
+    }
